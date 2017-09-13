@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v16.9.3                     
 ******************************************************************************
->> Linked Mon Sep 11 13:14:07 2017
+>> Linked Wed Sep 13 17:11:39 2017
 
 OUTPUT FILE NAME:   <SimpleBlink.out>
-ENTRY POINT SYMBOL: "_c_int00_noinit_noargs_noexit"  address: 0000f12c
+ENTRY POINT SYMBOL: "_c_int00_noinit_noargs_noexit"  address: 0000f134
 
 
 MEMORY CONFIGURATION
@@ -13,7 +13,7 @@ MEMORY CONFIGURATION
 ----------------------  --------  ---------  --------  --------  ----  --------
   BSL0                  00001000   00000800  00000000  00000800  RWIX
   RAM                   00002000   00000400  000000a0  00000360  RWIX
-  FRAM                  0000f100   00000e80  00000046  00000e3a  RWIX
+  FRAM                  0000f100   00000e80  0000004e  00000e32  RWIX
   JTAGSIGNATURE         0000ff80   00000004  00000004  00000000  RWIX  ffff 
   BSLSIGNATURE          0000ff84   00000004  00000004  00000000  RWIX  ffff 
   INT00                 0000ff88   00000002  00000000  00000002  RWIX
@@ -108,15 +108,15 @@ section   page    origin      length       input sections
 
 .const     0    0000f100    00000000     UNINITIALIZED
 
-.text      0    0000f100    0000002c     
-                  0000f100    00000022     main.obj (.text:main)
-                  0000f122    00000006     rts430x_lc_sd_eabi.lib : exit.obj (.text:abort)
-                  0000f128    00000004                            : pre_init.obj (.text:_system_pre_init)
+.text      0    0000f100    00000034     
+                  0000f100    0000002a     main.obj (.text:main)
+                  0000f12a    00000006     rts430x_lc_sd_eabi.lib : exit.obj (.text:abort)
+                  0000f130    00000004                            : pre_init.obj (.text:_system_pre_init)
 
 .text:_isr 
-*          0    0000f12c    0000001a     
-                  0000f12c    00000012     rts430x_lc_sd_eabi.lib : boot_special.obj (.text:_isr:_c_int00_noinit_noargs_noexit)
-                  0000f13e    00000008                            : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
+*          0    0000f134    0000001a     
+                  0000f134    00000012     rts430x_lc_sd_eabi.lib : boot_special.obj (.text:_isr:_c_int00_noinit_noargs_noexit)
+                  0000f146    00000008                            : isr_trap.obj (.text:_isr:__TI_ISR_TRAP)
 
 $fill000   0    0000ff80    00000004     
                   0000ff80    00000004     --HOLE-- [fill = ffff]
@@ -178,9 +178,9 @@ MODULE SUMMARY
        Module             code   ro data   rw data
        ------             ----   -------   -------
     .\
-       main.obj           34     0         0      
+       main.obj           42     0         0      
     +--+------------------+------+---------+---------+
-       Total:             34     0         0      
+       Total:             42     0         0      
                                                   
     C:\ti\ccsv7\tools\compiler\ti-cgt-msp430_16.9.3.LTS\lib\rts430x_lc_sd_eabi.lib
        boot_special.obj   18     0         0      
@@ -207,7 +207,7 @@ MODULE SUMMARY
                                                   
        Stack:             0      0         160    
     +--+------------------+------+---------+---------+
-       Grand Total:       70     30        160    
+       Grand Total:       78     30        160    
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -292,7 +292,7 @@ address   name
 00000672  BAKMEM9                      
 00000673  BAKMEM9_H                    
 00000672  BAKMEM9_L                    
-0000f122  C$$EXIT                      
+0000f12a  C$$EXIT                      
 000002ee  CAPTIOCTL                    
 000002ef  CAPTIOCTL_H                  
 000002ee  CAPTIOCTL_L                  
@@ -669,7 +669,7 @@ address   name
 000001cc  WDTCTL_L                     
 00002400  __STACK_END                  
 000000a0  __STACK_SIZE                 
-0000f13e  __TI_ISR_TRAP                
+0000f146  __TI_ISR_TRAP                
 0000ffe2  __TI_int45                   
 0000ffe4  __TI_int46                   
 0000ffe6  __TI_int47                   
@@ -688,11 +688,11 @@ ffffffff  __TI_pprof_out_hndl
 ffffffff  __TI_prof_data_size          
 ffffffff  __TI_prof_data_start         
 ffffffff  __c_args__                   
-0000f12c  _c_int00_noinit_noargs_noexit
+0000f134  _c_int00_noinit_noargs_noexit
 0000fffe  _reset_vector                
 00002360  _stack                       
-0000f128  _system_pre_init             
-0000f122  abort                        
+0000f130  _system_pre_init             
+0000f12a  abort                        
 0000f100  main                         
 
 
@@ -1156,11 +1156,11 @@ address   name
 00002360  _stack                       
 00002400  __STACK_END                  
 0000f100  main                         
-0000f122  C$$EXIT                      
-0000f122  abort                        
-0000f128  _system_pre_init             
-0000f12c  _c_int00_noinit_noargs_noexit
-0000f13e  __TI_ISR_TRAP                
+0000f12a  C$$EXIT                      
+0000f12a  abort                        
+0000f130  _system_pre_init             
+0000f134  _c_int00_noinit_noargs_noexit
+0000f146  __TI_ISR_TRAP                
 0000ffe2  __TI_int45                   
 0000ffe4  __TI_int46                   
 0000ffe6  __TI_int47                   
