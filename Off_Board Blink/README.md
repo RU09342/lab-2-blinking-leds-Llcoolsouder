@@ -8,3 +8,6 @@ LEDs like all diodes have an extremely low resistance when they are _on_. For mo
 
 ## Bulk and Bypass Capacitors
 In my circuit I have also included two capcitors on the Vcc input. These are my bulk and bypass capacitors. A typical bulk capacitor is 0.1 uF while a typical bypass capacitor for a digital aplication is 0.01 uF. The purpose of the bulk capacitor is to stabilize the power to the microcontroller. If the power supply voltage sags momentarily, the bulk capacitor can uphold the voltage for a short amount of time. The purpose of the bypass capacitor is to filter out some of the high frequency noise from the inner logic components of the device in order to achieve a cleaner power signal.
+
+## Reset Signal
+It is important to note that the MSP430G2553 has a reset pin that resets the processor if the pin goes LOW, so it is important that you connect the reset pin to Vcc. If this pin is left floating, you will achieve very unpredictable results.
