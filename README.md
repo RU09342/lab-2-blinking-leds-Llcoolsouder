@@ -19,31 +19,20 @@ By the end of this lab, you will be able to:
 * Control the status of an LED from a Button using Polling
 * Use the MSP430G2553 in a breadboard and blink LEDS without the development platform.
 
-This seems like a lot to do, but you have a ton of materials available to you to do this and is one of the most fundamental projects in the embedded world. 
+## Notable Differences Between Chips
+For starters, all of these boards have LEDs and buttons on different pins. On one board, an LED could be on P1.0 and on another dev board the LED might be on P1.6. This accounts for most of the minute differences in the code accross boards. In some cases however you may not see a change directly in the main loop of the code if the LED or button was on a different port altogether. In this case, I defined some macros before the ```int main(void) {...}```. An example of a macro definition is show below.
+```
+#define LED_OUT P1OUT
+```
+This tells the compiler to replace all instances of LED_OUT with P1OUT. 
 
-## Order of Exercises
-Since GITHUB likes to alphabetize files, you need to perform the exercises in the following order:
-1. Simple Blink
-2. Multiple Blink
-3. Button Blink
-4. Off_Board Blink
+This allows me to change the value of the macro in one time, and leave the rest of the code the same.  No further change is necessary if the original pin in the code was _P1.x_ and the pin that I'm changing to is _P2.x_, but if I'm changing from _P1.x_ to _P2.y_ or to _P1.y_, I will need to go into the code and change which speific bits are set and cleared.  
 
-## Deliverables
-By the end of the lab, you will need to provide at a minimum well documented main.c files for *EACH* of the 5 development platforms with accompanying README files which explain exactly how to implement your code. The reason I say minimum is because there are going to be some recommended further practice that is not mandatory, but heavily recommended, especially if you are finishing this lab in only a couple hours. So come Milestone time, I should see 4 folders in your repository with the following titles:
-* Simple Blink
-* Multiple Blink
-* Button Blink
-* Off_Board Blink
+The only other big difference that you will see in this project is the following line.
 
-each with the .c and README files for each board. The .c and README files should include the minimum amount of work as well as any extra work that you have done. Each processor should have its project saved in its own folder in each part of the assignment, however you only need one README per part of the assignment.
+```
+PM5CTL0 &= ~LOCKLPM5;       // Disable the GPIO power-on default high-impedance mode
+                            // to activate previously configured port settings
+```
 
-### README Files
-Since most of these projects will have just a simple main.c file, you do not need to generate 20 README files. Instead, unless you go for a more advanced implementation of the exercises, you just need 1 README per exercise folder. "But how do I make a README with all of the processors included?" Well now we are getting somewhere. You should talk about the general form of your code as it should be very similar for each processor, but you should highlight what the differences are between each processor. For example, do the clocks need to be initialized differently? As another step forward, you could take that information and somehow make it where your code would work on any of the processors without the need to change it between projects.
-
-
-### Header Files
-You may find yourself by the end of this lab not having generated any header files, which in this case, ignore this section. If you have generated more than just a main.c you most likely have yourself a .h file or two. Remember from the first lab that any header files or libraries that you generate need to have their own README.md which tell the user what dependencies there are, how to install them into their projects, etc.
-
-## Documentation
-Since you will most likely be using pre-made code to make most of your code, so what I am going to require you to do is comment each line of code and what it is doing. If you are using code from TI themselves, it will most likely have some of the comments there. But I want you to use your own words when writing these comments. Dive into the datasheets, look into the MSP430.h file to see what registers are being manipulated and tell me why you need to configure them. 
-
+This line is needed in order to do any kind of GPIO for the FR series chips. This line takes the pins out of high impedence mode so that you can read and write to I/O pins.
